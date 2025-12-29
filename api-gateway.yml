@@ -1,0 +1,57 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9000   # auth-service issuer
+
+      client:
+        registration:
+          gateway-client:
+            client-id: api-gateway
+            client-secret: gateway-secret
+            authorization-grant-type: client_credentials
+            scope: account.read
+        provider:
+          auth-server:
+            token-uri: http://localhost:9000/oauth2/token
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+      routes:
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/auth/**,/oauth2/**
+
+        - id: account-service
+          uri: lb://account-service
+          predicates:
+            - Path=/accounts/**
+
+        - id: transaction-service
+          uri: lb://transaction-service
+          predicates:
+            - Path=/transactions/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
