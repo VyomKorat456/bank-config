@@ -4,12 +4,6 @@ server:
 spring:
   application:
     name: api-gateway
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:9000
-
 
   cloud:
     gateway:
@@ -22,7 +16,7 @@ spring:
         - id: auth-service
           uri: lb://auth-service
           predicates:
-            - Path=/auth/**,/oauth2/**
+            - Path=/auth/**
 
         - id: account-service
           uri: lb://account-service
