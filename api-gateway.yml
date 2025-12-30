@@ -4,23 +4,12 @@ server:
 spring:
   application:
     name: api-gateway
-
   security:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:9000   # auth-service issuer
+          issuer-uri: http://localhost:9000
 
-      client:
-        registration:
-          gateway-client:
-            client-id: api-gateway
-            client-secret: gateway-secret
-            authorization-grant-type: client_credentials
-            scope: account.read
-        provider:
-          auth-server:
-            token-uri: http://localhost:9000/oauth2/token
 
   cloud:
     gateway:
