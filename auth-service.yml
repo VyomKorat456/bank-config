@@ -9,7 +9,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/bank_auth
     username: postgres
     password: kysz
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
