@@ -21,9 +21,16 @@ spring:
         
   security:
     oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:9000
+      client:
+        registration:
+          transaction-client:
+            client-id: transaction-service
+            client-secret: txn-secret
+            authorization-grant-type: client_credentials
+            scope: transaction.write
+        provider:
+          transaction-provider:
+            token-uri: http://localhost:9001/oauth2/token
 
 eureka:
   client:
