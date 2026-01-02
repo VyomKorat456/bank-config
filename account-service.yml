@@ -21,9 +21,8 @@ spring:
 
   security:
     oauth2:
-
       # =========================
-      # OAUTH2 CLIENT (CALL OTHER SERVICES)
+      # OAUTH2 CLIENT (Transaction Service Registration)
       # =========================
       client:
         registration:
@@ -33,13 +32,12 @@ spring:
             client-secret: ${ACCOUNT_SERVICE_CLIENT_SECRET:your_client_secret_here}
             authorization-grant-type: client_credentials
             scope: openid
-
         provider:
           keycloak:
             issuer-uri: http://localhost:8180/realms/bank-realm
 
       # =========================
-      # RESOURCE SERVER (SECURE APIs)
+      # RESOURCE SERVER (Validate Incoming Tokens)
       # =========================
       resourceserver:
         jwt:
