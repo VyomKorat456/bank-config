@@ -21,31 +21,21 @@ spring:
 
   security:
     oauth2:
-      # =========================
-      # OAUTH2 CLIENT (Transaction Service Registration)
-      # =========================
       client:
         registration:
           transaction-service:
             provider: keycloak
-            client-id: account-service
-            client-secret: ${ACCOUNT_SERVICE_CLIENT_SECRET:your_client_secret_here}
+            client-id: account-service 
+            client-secret: 9oyxCoCbPLYOpUdVGyKYCmNY4uwgxLay
             authorization-grant-type: client_credentials
             scope: openid
         provider:
           keycloak:
             issuer-uri: http://localhost:8180/realms/bank-realm
-
-      # =========================
-      # RESOURCE SERVER (Validate Incoming Tokens)
-      # =========================
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8180/realms/bank-realm
 
-# =========================
-# EUREKA CONFIG
-# =========================
 eureka:
   instance:
     prefer-ip-address: true
@@ -54,9 +44,6 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
 
-# =========================
-# ACTUATOR
-# =========================
 management:
   endpoints:
     web:
