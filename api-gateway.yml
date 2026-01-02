@@ -3,15 +3,16 @@ server:
   error:
     include-message: always
 
-logging:
-  level:
-    org.springframework.web: DEBUG
-    org.springframework.cloud.gateway: DEBUG
-    org.springframework.security: DEBUG
-
 spring:
   application:
     name: api-gateway
+
+  # Keycloak Resource Server Configuration
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8180/realms/bank-realm
 
   cloud:
     gateway:
@@ -19,9 +20,8 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
-
+      
       routes:
-
         # =====================
         # AUTH SERVICE (PUBLIC)
         # =====================
@@ -44,6 +44,12 @@ spring:
         # ❌ NO ROUTE EXPOSED FOR /transactions/**
         # Only Account Service can call Transaction Service
         # directly via service discovery (lb://transaction-service)
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.security: DEBUG
 
 eureka:
   client:
