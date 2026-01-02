@@ -27,12 +27,13 @@ spring:
             provider: transaction-provider
             client-id: transaction-service
             client-secret: txn-secret
+            client-id: account-service
+            client-secret: account-secret-123
             authorization-grant-type: client_credentials
             scope: transaction.write
         provider:
           transaction-provider:
-            token-uri: http://localhost:9001/oauth2/token
-
+            token-uri: http://localhost:9000/auth/token
 eureka:
   client:
     service-url:
