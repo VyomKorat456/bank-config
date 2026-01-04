@@ -8,7 +8,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/bank_auth
     username: postgres
-    password: kysz
+    password: 250604
     driver-class-name: org.postgresql.Driver
 
   jpa:
