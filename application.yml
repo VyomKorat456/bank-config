@@ -1,7 +1,7 @@
 spring:
   datasource:
     username: postgres
-    password: 250604
+    password: kysz
     driver-class-name: org.postgresql.Driver
 
   jpa:
