@@ -36,6 +36,12 @@ spring:
           uri: lb://account-service
           predicates:
             - Path=/accounts/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
+                key-resolver: "#{@ipKeyResolver}"
 
         # 🚫 TRANSACTION SERVICE
         # Not exposed via gateway
